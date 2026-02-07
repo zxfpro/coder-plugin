@@ -1,0 +1,14 @@
+{
+  "name": "my-marketplace",
+  "description": "我的插件市场",
+  "plugins": [
+    {
+      "name": "plugin-one",
+      "source": "./plugins/plugin-one"
+    },
+    {
+      "name": "plugin-two", 
+      "source": "./plugins/plugin-two"
+    }
+  ]
+}
