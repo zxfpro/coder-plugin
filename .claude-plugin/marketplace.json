@@ -14,19 +14,15 @@
       "description": "a package",
       "author": {
       "name": "yueran",
-      "url": "https://x.com/affaanmustafa"
+      "url": "---"
     },
-      "homepage": "https://github.com/affaan-m/everything-claude-code",
-      "repository": "https://github.com/affaan-m/everything-claude-code",
-      "license": "MIT",
+      "homepage": "---",
+      "repository": "---",
       "keywords": [
-        "claude-code"
-      ],
-      "skills": ["./skills/", "./commands/"],
+                "claude-code"
+                  ],
       "agents": [
-        "./agents/architect.md",
-        "./agents/build-error-resolver.md",
-        "./agents/code-reviewer.md"
+                "agents/environment-manager.md"
       ]
     }
   ]
