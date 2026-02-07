@@ -9,7 +9,6 @@
   },
   "plugins": [
     {
-      "name": "plugin1",
       "source": "./plugins/plugin-one",
       "description": "a package"
     }
