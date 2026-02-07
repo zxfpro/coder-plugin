@@ -9,8 +9,25 @@
   },
   "plugins": [
     {
+      "name": "plugin1",
       "source": "./plugins/plugin-one",
-      "description": "a package"
+      "description": "a package",
+      "author": {
+      "name": "yueran",
+      "url": "https://x.com/affaanmustafa"
+    },
+      "homepage": "https://github.com/affaan-m/everything-claude-code",
+      "repository": "https://github.com/affaan-m/everything-claude-code",
+      "license": "MIT",
+      "keywords": [
+        "claude-code"
+      ],
+      "skills": ["./skills/", "./commands/"],
+      "agents": [
+        "./agents/architect.md",
+        "./agents/build-error-resolver.md",
+        "./agents/code-reviewer.md"
+      ]
     }
   ]
 }
