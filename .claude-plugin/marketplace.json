@@ -2,14 +2,14 @@
   "name": "coder-coder",
   "owner": {
     "name": "yueran",
-    "email": "affaan@example.com"
+    "email": "823042332@qq.com"
   },
   "metadata": {
-    "description": "Battle-tested Claude Code configurations from an Anthropic hackathon winner"
+    "description": "a package with some code"
   },
   "plugins": [
     {
-      "name": "plugin-1",
+      "name": "plugin-work",
       "source": "./",
       "description": "2334f agents, skills, hooks, commands, and rules evolved over 10+ months of intensive daily use",
       "author": {
