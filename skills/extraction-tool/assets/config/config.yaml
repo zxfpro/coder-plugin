@@ -1,0 +1,23 @@
+project:
+  path: /path/to/your/project
+  name: your-project-name
+
+extraction:
+  frontend:
+    components:
+      - "src/components/**/*.tsx"
+    api:
+      - "src/api/**/*.ts"
+  backend:
+    routes:
+      - "src/backend/server/**/*.py"
+    models:
+      - "src/backend/server/models.py"
+  utils:
+    - "src/utils/**/*.ts"
+    - "src/utils/**/*.py"
+
+exclusions:
+  - "**/__pycache__/**"
+  - "**/.git/**"
+  - "**/node_modules/**"

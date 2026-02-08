@@ -1,6 +1,6 @@
 {
   "name": "plugin-work",
-  "version": "1.2.7",
+  "version": "1.2.8",
   "description": "Complete collection of battle-tested Claude Code configs from an Anthropic hackathon winner - agents, skills, hooks, and rules evolved over 10+ months of intensive daily use",
   "author": {
     "name": "Affaan Mustafa",
@@ -14,7 +14,6 @@
     "skills",
     "hooks"
   ],
-  "hooks": ["./hooks"],
   "skills": ["./skills/", "./commands/"],
   "agents": [
     "./agents/architect.md"

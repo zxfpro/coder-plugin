@@ -1,0 +1,34 @@
+version: '1.0'
+name: pipeline_docker
+displayName: docker_build
+triggers:
+  trigger: auto
+  push:
+    branches:
+      prefix:
+        - ''
+stages:
+  - name: stage-d48b0fdf
+    displayName: docker构建
+    strategy: naturally
+    trigger: auto
+    executor: []
+    steps:
+      - step: build@docker
+        name: build_docker
+        displayName: 镜像构建
+        type: account
+        repository: crpi-zgfbtjfikwp3y25u.cn-beijing.personal.cr.aliyuncs.com/longsu
+        username: 澄泓厉雪
+        password: ZHF4233613
+        # tag: server:${GITEE_PIPELINE_BUILD_NUMBER} # TODO 修改为本地的
+        dockerfile: ./Dockerfile
+        context: ''
+        artifacts: []
+        isCache: true
+        processorType:
+          - amd64
+        parameter: {}
+        notify: []
+        strategy:
+          retry: '0'
