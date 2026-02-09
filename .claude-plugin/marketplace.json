@@ -11,7 +11,7 @@
     {
       "name": "plugin-work",
       "source": "./",
-      "description": "2334f agents, skills, hooks, commands, and rules evolved over 10+ months of intensive daily use",
+      "description": "custom plugin with skills hook agents",
       "author": {
         "name": "yueran"
       },

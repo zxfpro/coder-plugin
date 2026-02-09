@@ -1,13 +1,13 @@
 {
   "name": "plugin-work",
-  "version": "1.2.8",
-  "description": "Complete collection of battle-tested Claude Code configs from an Anthropic hackathon winner - agents, skills, hooks, and rules evolved over 10+ months of intensive daily use",
+  "version": "1.0.1",
+  "description": "custom plugin with skills hook agents ",
   "author": {
     "name": "Affaan Mustafa",
     "url": "https://x.com/affaanmustafa"
   },
-  "homepage": "https://github.com/affaan-m/everything-claude-code",
-  "repository": "https://github.com/affaan-m/everything-claude-code",
+  "homepage": "",
+  "repository": "",
   "keywords": [
     "claude-code",
     "agents",
