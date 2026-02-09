@@ -1,29 +1,40 @@
 {
   "name": "coder-coder",
+  "description": "一些标准化工具的整合包",
   "owner": {
     "name": "yueran",
     "email": "823042332@qq.com"
   },
-  "metadata": {
-    "description": "a package with some code"
-  },
   "plugins": [
     {
       "name": "plugin-work",
-      "source": "./",
       "description": "custom plugin with skills hook agents",
       "author": {
-        "name": "yueran"
+        "name": "yueran",
+        "email": "823042332@qq.com"
       },
-      "keywords": [
-        "agents",
-        "skills"
-      ],
-      "category": "workflow",
-      "tags": [
-        "agents",
-        "skills"
-      ]
+      "source": "./plugins/plugin-work",
+      "category": "template"
+    },
+    {
+      "name": "remind-hook",
+      "description": "remind you when AI complete",
+      "author": {
+        "name": "yueran",
+        "email": "823042332@qq.com"
+      },
+      "source": "./plugins/remind-hook",
+      "category": "interaction"
+    },
+    {
+      "name": "template-demo",
+      "description": "a template-demo",
+      "author": {
+        "name": "yueran",
+        "email": "823042332@qq.com"
+      },
+      "source": "./plugins/template-demo",
+      "category": "productivity"
     }
   ]
 }
