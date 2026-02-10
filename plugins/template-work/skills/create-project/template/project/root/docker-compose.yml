@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+
+  test:
+    container_name: test
+    ports:
+      - "8006:80" 
+    environment:
+      - BIANXIE_BASE=https://api.bianxieai.com/v1
+
+    restart: always 
+networks:
+  webnet:
+    driver: bridge
