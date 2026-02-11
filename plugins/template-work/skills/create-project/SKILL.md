@@ -40,7 +40,7 @@ scripts/create_project.sh tools
 1. **参数验证**：检查项目类型参数（project 或 tools）
 2. **项目命名**：交互式输入项目名称，tools 模式会检查 PyPI 可用性
 3. **符号链接**: 进入项目目录, 运行 uv pip install -e . 将项目打包
-4. **调整** : 调整 index.html 中的路径
+5. **启动** : 启动前后端服务 yarn install; yarn dev-vite | bash start.sh
 ## 项目使用
 
 ### 启动前端开发服务器
@@ -50,7 +50,7 @@ scripts/create_project.sh tools
 yarn install
 
 # 启动前端开发服务器
-yarn dev
+yarn dev-vite
 ```
 
 ### 项目启动模式
