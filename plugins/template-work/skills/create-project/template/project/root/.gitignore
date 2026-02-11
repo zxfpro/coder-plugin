@@ -166,3 +166,4 @@ uv.lock
 docs
 /notebook
 docker-compose-product.yml
+/node_modules
