@@ -103,16 +103,21 @@ if [ "$INPUT_ARG" == "tools" ]; then
 
 elif [ "$INPUT_ARG" == "project" ]; then
 
-    while true; do
-        read -p "请输入您希望项目名: " PYPI_PACKAGE_NAME
-        if [ -z "$PYPI_PACKAGE_NAME" ]; then
-            echo "项目名不能为空，请重新输入。"
-            continue
-        else
-            echo "项目名 '$PYPI_PACKAGE_NAME' 可用。"
-            break 
-        fi
-    done
+    if [ -z "$2" ]; then
+        while true; do
+            read -p "请输入您希望项目名: " PYPI_PACKAGE_NAME
+            if [ -z "$PYPI_PACKAGE_NAME" ]; then
+                echo "项目名不能为空，请重新输入。"
+                continue
+            else
+                echo "项目名 '$PYPI_PACKAGE_NAME' 可用。"
+                break
+            fi
+        done
+    else
+        PYPI_PACKAGE_NAME="$2"
+        echo "项目名 '$PYPI_PACKAGE_NAME' 可用。"
+    fi
 
 fi
 
