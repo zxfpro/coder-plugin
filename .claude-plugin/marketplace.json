@@ -1,5 +1,5 @@
 {
-  "name": "coder-coder",
+  "name": "Coder-Plugin",
   "description": "一些标准化工具的整合包",
   "owner": {
     "name": "yueran",
@@ -7,14 +7,14 @@
   },
   "plugins": [
     {
-      "name": "template-work",
-      "description": "template to use222",
+      "name": "ScaffoldX",
+      "description": "基于模版的代码生成套件",
       "author": {
         "name": "yueran",
         "email": "823042332@qq.com"
       },
-      "version": "1.0.9",
-      "source": "./plugins/template-work",
+      "version": "1.0.2",
+      "source": "./plugins/ScaffoldX",
       "category": "template"
     },
     {
@@ -29,14 +29,25 @@
       "category": "interaction"
     },
     {
-      "name": "template-demo",
-      "description": "a template-demo",
+      "name": "Coder",
+      "description": "一系列Code工具",
       "author": {
         "name": "yueran",
         "email": "823042332@qq.com"
       },
       "version": "1.0.9",
-      "source": "./plugins/template-demo",
+      "source": "./plugins/Coder",
+      "category": "interaction"
+    },
+    {
+      "name": "SampleTDDCoder",
+      "description": "基于文档开发, 与基于测试开发的套件",
+      "author": {
+        "name": "yueran",
+        "email": "823042332@qq.com"
+      },
+      "version": "1.0.3",
+      "source": "./plugins/SampleTDDCoder",
       "category": "productivity"
     }
   ]
