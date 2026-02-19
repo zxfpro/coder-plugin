@@ -8,7 +8,6 @@
   "plugins": [
     {
       "name": "template-work",
-      "description": "custom plugin with skills hook agents",
       "author": {
         "name": "yueran",
         "email": "823042332@qq.com"
