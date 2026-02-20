@@ -29,14 +29,25 @@
       "category": "interaction"
     },
     {
+      "name": "Coder",
+      "description": "一系列Code工具",
+      "author": {
+        "name": "yueran",
+        "email": "823042332@qq.com"
+      },
+      "version": "1.0.9",
+      "source": "./plugins/Coder",
+      "category": "interaction"
+    },
+    {
       "name": "DDD_TDD2Code",
       "description": "基于文档开发, 与基于测试开发的套件",
       "author": {
         "name": "yueran",
         "email": "823042332@qq.com"
       },
-      "version": "1.0.9",
-      "source": "./plugins/template-demo",
+      "version": "1.0.2",
+      "source": "./plugins/DDD_TDD2Code",
       "category": "productivity"
     }
   ]
