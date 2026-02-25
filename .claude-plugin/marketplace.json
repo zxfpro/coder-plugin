@@ -46,7 +46,7 @@
         "name": "yueran",
         "email": "823042332@qq.com"
       },
-      "version": "1.0.8",
+      "version": "1.0.9",
       "source": "./plugins/SampleTDDCoder",
       "category": "productivity"
     }
