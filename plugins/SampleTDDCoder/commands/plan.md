@@ -1,5 +1,7 @@
 ---
+name: plane
 description: 复述需求、评估风险，并创建分步骤的实现计划。在未获得用户【确认】之前，必须等待，不得修改任何代码。
+input: opens
 ---
 
 # Plan 命令说明
