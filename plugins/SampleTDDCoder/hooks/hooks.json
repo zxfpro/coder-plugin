@@ -16,7 +16,7 @@
           "hooks": [
             {
               "type": "command",
-              "command": "bash \"${CLAUDE_PLUGIN_ROOT}/scripts/worktreecreate.sh\""
+              "command": "bash \"${CLAUDE_PLUGIN_ROOT}/scripts/worktree-create.sh\""
             }
         ]}
       ]
