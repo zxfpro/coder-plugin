@@ -10,6 +10,18 @@
             }
           ]
         }
+      ],
+      "WorktreeCreate": [
+        {
+          "hooks": [
+            {
+              "type": "command",
+              "command": "bash -c 'INPUT=$(cat); NAME=$(echo \"$INPUT\" | jq -r .name); WORKTREE_PATH=\"/tmp/worktrees/$NAME\"; git worktree add \"$WORKTREE_PATH\" HEAD && ln -sf \"$(pwd)/.env\" \"$WORKTREE_PATH/.env\" && echo \"$WORKTREE_PATH\"'"
+            }
+        ]}
       ]
   }
+
+
+
 }
