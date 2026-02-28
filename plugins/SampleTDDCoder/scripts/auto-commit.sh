@@ -1,17 +1,13 @@
 #!/bin/bash
-say "hello"
 
+# 检测是否在 worktree 中
 if git rev-parse --is-inside-work-tree > /dev/null 2>&1; then
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
   
+  # 检查是否有更改
   if ! git diff --quiet || ! git diff --cached --quiet; then
-    # 先获取 diff，再 add
-    DIFF=$(git diff)
     git add -A
-    
-    # 使用 claude -p 生成提交信息
-    echo "$DIFF" | claude -p "为这些更改生成一个简洁的 git commit 信息" | git commit -F -
-    
+    git commit -m "Auto commit by Claude on branch: $BRANCH"
     git push origin "$BRANCH"
   fi
 fi
