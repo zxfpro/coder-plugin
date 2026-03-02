@@ -40,6 +40,17 @@
       "category": "interaction"
     },
     {
+      "name": "mindecho-ai",
+      "description": "mindecho-ai",
+      "author": {
+        "name": "yueran",
+        "email": "823042332@qq.com"
+      },
+      "version": "1.0.1",
+      "source": "./plugins/mindecho-ai",
+      "category": "interaction"
+    },
+    {
       "name": "SampleTDDCoder",
       "description": "基于文档开发, 与基于测试开发的套件",
       "author": {
