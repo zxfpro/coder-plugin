@@ -7,6 +7,16 @@ SERVER_USER="root"
 SERVER_HOST="39.96.146.47"
 SERVER_DIR="/root/diglife_docker/test"
 REGISTRY="shikongai-registry.cn-beijing.cr.aliyuncs.com/shikongai/mindecho_ai"
+SKIP_CONFIRM=false
+
+# 解析命令行参数
+while getopts ":y" opt; do
+  case $opt in
+    y) SKIP_CONFIRM=true ;;
+    \?) echo "Invalid option: -$OPTARG" >&2; exit 1 ;;
+  esac
+done
+shift $((OPTIND-1))
 
 # 颜色输出
 RED='\033[0;31m'
@@ -53,11 +63,15 @@ pre_deploy_check() {
     # 检查是否有未提交的更改
     if ! git diff-index --quiet HEAD --; then
         log_warn "存在未提交的更改，建议先提交代码"
-        read -p "是否继续部署? (y/n): " -n 1 -r
-        echo
-        if [[ ! $REPLY =~ ^[Yy]$ ]]; then
-            log_error "部署已取消"
-            exit 1
+        if [ "$SKIP_CONFIRM" = false ]; then
+            read -p "是否继续部署? (y/n): " -n 1 -r
+            echo
+            if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+                log_error "部署已取消"
+                exit 1
+            fi
+        else
+            log_warn "跳过确认，继续部署"
         fi
     fi
 
@@ -86,7 +100,7 @@ deploy_image() {
 
     # 使用环境变量部署新版本
     log_info "使用 IMAGE_TAG 环境变量部署新版本..."
-    ssh ${SERVER_USER}@${SERVER_HOST} "cd ${'${SERVER_DIR}'} && IMAGE_TAG=${'${REGISTRY}:${version}'} docker-compose up -d --force-recreate"
+    ssh ${SERVER_USER}@${SERVER_HOST} "cd ${SERVER_DIR} && IMAGE_TAG=${REGISTRY}:${version} docker-compose up -d --force-recreate"
 
     log_info "部署完成，已切换到版本: ${version}"
 }
@@ -167,10 +181,14 @@ main() {
         show_logs
 
         # 提示清理
-        read -p "是否清理旧镜像? (y/n): " -n 1 -r
-        echo
-        if [[ $REPLY =~ ^[Yy]$ ]]; then
-            cleanup_old_images
+        if [ "$SKIP_CONFIRM" = false ]; then
+            read -p "是否清理旧镜像? (y/n): " -n 1 -r
+            echo
+            if [[ $REPLY =~ ^[Yy]$ ]]; then
+                cleanup_old_images
+            fi
+        else
+            log_info "跳过清理确认"
         fi
     else
         log_error "部署失败，执行回滚..."

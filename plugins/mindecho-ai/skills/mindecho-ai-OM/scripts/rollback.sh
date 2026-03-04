@@ -7,6 +7,17 @@ SERVER_USER="root"
 SERVER_HOST="39.96.146.47"
 SERVER_DIR="/root/diglife_docker/test"
 REGISTRY="shikongai-registry.cn-beijing.cr.aliyuncs.com/shikongai/mindecho_ai"
+TEST_PORT="8007"
+SKIP_CONFIRM=false
+
+# 解析命令行参数
+while getopts ":y" opt; do
+  case $opt in
+    y) SKIP_CONFIRM=true ;;
+    \?) echo "Invalid option: -$OPTARG" >&2; exit 1 ;;
+  esac
+done
+shift $((OPTIND-1))
 
 # 颜色输出
 RED='\033[0;31m'
@@ -114,7 +125,7 @@ health_check() {
     log_info "执行健康检查..."
 
     while [ $retry_count -lt $max_retries ]; do
-        if ssh ${SERVER_USER}@${SERVER_HOST} "curl -s -o /dev/null -w '%{http_code}' http://localhost:8007/" | grep -q '200'; then
+        if ssh ${SERVER_USER}@${SERVER_HOST} "curl -s -o /dev/null -w '%{http_code}' http://localhost:${TEST_PORT}/" | grep -q '200'; then
             log_success "健康检查通过!"
             return 0
         fi
@@ -165,28 +176,34 @@ main() {
     if [ "$1" = "--prev" ]; then
         log_info "使用 --prev 参数执行快速回滚..."
         echo ""
-        read -p "确认回滚到上一版本? (y/n): " -n 1 -r
-        echo ""
 
-        if [[ $REPLY =~ ^[Yy]$ ]]; then
-            if rollback_to_previous; then
-                if health_check; then
-                    echo ""
-                    log_info "========================================="
-                    log_success "快速回滚成功完成!"
-                    log_info "访问地址: http://${SERVER_HOST}:8007"
-                    log_info "========================================="
-                    echo ""
-                    show_logs
-                else
-                    log_error "回滚后健康检查失败，请手动检查服务状态"
-                    show_logs
-                fi
-            else
-                log_error "快速回滚失败"
+        if [ "$SKIP_CONFIRM" = false ]; then
+            read -p "确认回滚到上一版本? (y/n): " -n 1 -r
+            echo ""
+
+            if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+                log_info "回滚已取消"
+                return 0
             fi
         else
-            log_info "回滚已取消"
+            log_warn "跳过确认，继续回滚"
+        fi
+
+        if rollback_to_previous; then
+            if health_check; then
+                echo ""
+                log_info "========================================="
+                log_success "快速回滚成功完成!"
+                log_info "访问地址: http://${SERVER_HOST}:${TEST_PORT}"
+                log_info "========================================="
+                echo ""
+                show_logs
+            else
+                log_error "回滚后健康检查失败，请手动检查服务状态"
+                show_logs
+            fi
+        else
+            log_error "快速回滚失败"
         fi
         return 0
     fi
@@ -250,31 +267,37 @@ main() {
     echo ""
     log_warn "您即将回滚到版本: ${selected_version}"
     echo ""
-    read -p "确认回滚? (y/n): " -n 1 -r
-    echo ""
 
-    if [[ $REPLY =~ ^[Yy]$ ]]; then
-        if rollback_to_version "$selected_version"; then
-            if health_check; then
-                echo ""
-                log_info "========================================="
-                log_success "回滚成功完成!"
-                log_info "新版本: ${selected_version}"
-                log_info "访问地址: http://${SERVER_HOST}:8007"
-                log_info "========================================="
-                echo ""
+    if [ "$SKIP_CONFIRM" = false ]; then
+        read -p "确认回滚? (y/n): " -n 1 -r
+        echo ""
 
-                # 显示日志
-                show_logs
-            else
-                log_error "回滚后健康检查失败，请手动检查服务状态"
-                show_logs
-            fi
-        else
-            log_error "回滚失败"
+        if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+            log_info "回滚已取消"
+            exit 0
         fi
     else
-        log_info "回滚已取消"
+        log_warn "跳过确认，继续回滚"
+    fi
+
+    if rollback_to_version "$selected_version"; then
+        if health_check; then
+            echo ""
+            log_info "========================================="
+            log_success "回滚成功完成!"
+            log_info "新版本: ${selected_version}"
+            log_info "访问地址: http://${SERVER_HOST}:${TEST_PORT}"
+            log_info "========================================="
+            echo ""
+
+            # 显示日志
+            show_logs
+        else
+            log_error "回滚后健康检查失败，请手动检查服务状态"
+            show_logs
+        fi
+    else
+        log_error "回滚失败"
     fi
 }
 
